@@ -1,0 +1,214 @@
+
+      <!-- Main content -->
+      <main role="main" class="">
+  <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h1 class="h2">User Profile Dashboard</h1>
+  </div>
+          <!-- Search Bar -->
+        <div class="search-bar">
+          <h2>Search for Parking Lots</h2>
+          <form class="form-inline">
+            <input class="form-control mr-sm-2" type="search" placeholder="Enter parking lot name" aria-label="Search">
+            <button class="btn btn-primary my-2 my-sm-0" type="submit">Search</button>
+          </form>
+        </div>
+
+  <!-- User Profile Section -->
+  <div class="card mb-4 user-info">
+    <div class="card-header position-relative">
+      <span class="user-info-edit-icon" data-toggle="tooltip" data-placement="top" title="Edit Profile">
+        <i class="fas fa-edit"></i>
+      </span>
+      User Profile
+    </div>
+    <div class="card-body">
+      <!-- Display user information here -->
+      <div class="user-info-columns">
+        <div class="user-info-column">
+          <h5 class="card-title"><b>Name</b> {{user.name}}</h5>
+          <p class="card-text"><b>Email:</b>{{user.email}}</p>
+          <p class="card-text"><b>Phone:</b>{{user.phoneNumber}}</p>
+          <p class="card-text"><b>Phone:</b>{{user.phoneNumber}}</p>
+          <p class="card-text"><b>Phone:</b>{{user.phoneNumber}}</p>
+          <p class="card-text"><b>Phone:</b>{{user.phoneNumber}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+        <!-- Parking History Section -->
+        <div class="card">
+          <div class="card-header">
+            Parking History
+          </div>
+          <div class="card-body">
+            <!-- Display parking history here -->
+            <table class="table table-bordered">
+              <thead class="thead-light">
+                <tr>
+                  <th>Date</th>
+                  <th>Location</th>
+                  <th>Time Spent</th>
+                  <th>Cost</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- Add rows with parking history data -->
+                <tr *ngFor="let transaction of transactions">
+                  <td>{{transaction.startTimeStamp}}</td>
+                  <td>{{transaction.parkingSpace.parkingLot?.address}}</td>
+                  <td>{{transaction.duration}}</td>
+                  <td>{{transaction.price|currency}}</td>
+                </tr>
+                <!-- Add more rows as needed -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <!-- Data Card 1 -->
+        <div class="row mt-4">
+          <div class="col-md-4">
+            <div class="card data-card">
+              <div class="card-header bg-success text-white">
+                Time Spent in Parking Lot
+              </div>
+              <div class="card-body">
+                <canvas class="data-chart" id="dataChart1"></canvas>
+                <!-- Placeholder content for the chart -->
+              </div>
+            </div>
+          </div>
+
+          <!-- Data Card 2 -->
+          <div class="col-md-4">
+            <div class="card data-card">
+              <div class="card-header bg-warning text-white">
+                Total Spent per Parking Lot
+              </div>
+              <div class="card-body">
+                <canvas class="data-chart" id="dataChart2"></canvas>
+                <!-- Placeholder content for the chart -->
+              </div>
+            </div>
+          </div>
+
+          <!-- Data Card 3 -->
+          <div class="col-md-4">
+            <div class="card data-card">
+              <div class="card-header bg-info text-white">
+                Filter by Period
+              </div>
+              <div class="card-body">
+                <canvas class="data-chart" id="dataChart3"></canvas>
+                <!-- Placeholder content for the chart -->
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Create/Edit Vehicle Section -->
+        <div class="card mt-4">
+          <div class="card-header">
+            Create/Edit Vehicle
+          </div>
+          <div class="card-body">
+            <form>
+              <div class="form-group">
+                <label for="vehicleModel">Vehicle Model</label>
+                <input type="text" class="form-control" id="vehicleModel" placeholder="Enter vehicle model">
+              </div>
+              <div class="form-group">
+                <label for="vehicleColor">Vehicle Color</label>
+                <input type="text" class="form-control" id="vehicleColor" placeholder="Enter vehicle color">
+              </div>
+              <div class="form-group">
+                <label for="yearOfManufacture">Year of Manufacture</label>
+                <input type="number" class="form-control" id="yearOfManufacture" placeholder="Enter year of manufacture">
+              </div>
+              <button type="submit" class="btn btn-primary">Save Vehicle</button>
+            </form>
+          </div>
+        </div>
+        <!-- Select Parking Section -->
+        <div class="card booking-section">
+          <div class="card-header">
+            Select Parking
+          </div>
+          <div class="card-body">
+            <form>
+<div class="form-group">
+  <label for="parkingSpace">Select Parking Space</label>
+  <select [value]="selectedParkingLot" class="form-control" id="parkingSpace" (change)="lotChanged()">
+    <option *ngFor="let parkingLot of parkingLots" class="form-control" [value]="parkingLot.id" [selected]="parkingLot.name">{{parkingLot.name}}</option>
+    <!-- Add more options as needed -->
+  </select>
+</div>
+              <div class="form-group">
+                <label for="parkingSpace">Select Parking Space</label>
+                <select class="form-control" id="parkingSpace">
+                  <option value="">Choose...</option>
+                  <option *ngFor="let parkingLot of parkingLots" class="form-control" id="parkingLot">{{parkingLot.address}}</option>
+                  <!-- Add more options as needed -->
+                </select>
+              </div>
+              <button type="submit" class="btn btn-primary">Select Parking</button>
+            </form>
+          </div>
+        </div>
+
+        <!-- Close Parking Timer Section -->
+        <div class="card close-parking-section">
+          <div class="card-header">
+            Close Parking Timer
+          </div>
+          <div class="card-body">
+            <!-- Display parking timer information and close button -->
+            <p>Parking Timer Started: 2 hours ago</p>
+            <button class="btn btn-danger">Close Parking</button>
+          </div>
+        </div>
+
+        <!-- Additional Cards with Data and Charts -->
+        <div class="row mt-4">
+          <!-- Card 4 -->
+          <div class="col-md-4">
+            <div class="card data-card">
+              <div class="card-header bg-danger text-white">
+                Data Card 4
+              </div>
+              <div class="card-body">
+                <canvas class="data-chart" id="dataChart4"></canvas>
+                <!-- Placeholder content for the chart -->
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 5 -->
+          <div class="col-md-4">
+            <div class="card data-card">
+              <div class="card-header bg-primary text-white">
+                Data Card 5
+              </div>
+              <div class="card-body">
+                <canvas class="data-chart" id="dataChart5"></canvas>
+                <!-- Placeholder content for the chart -->
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 6 -->
+          <div class="col-md-4">
+            <div class="card data-card">
+              <div class="card-header bg-secondary text-white">
+                Data Card 6
+              </div>
+              <div class="card-body">
+                <canvas class="data-chart" id="dataChart6"></canvas>
+                <!-- Placeholder content for the chart -->
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Buttons and Additional Content -->
+      </main>

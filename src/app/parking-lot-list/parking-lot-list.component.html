@@ -1,0 +1,39 @@
+ <div class="panel-heading">
+    <h2>Parking Spaces List</h2>
+  </div>
+<div class="panel panel-primary">
+ 
+  <div class="panel-body">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th (click)="sort('id')" >Id <i class="bi bi-sort-down"></i></th>
+          <th (click)="sort('name')">Name <i class="bi bi-sort-down"></i></th>
+          <th (click)="sort('address')">Address<i class="bi bi-sort-down"></i></th>
+          <th>Stories<i class="bi bi-sort-down"></i></th>
+          <th>Capacity</th>
+          <th>Available Spaces</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let parkingLot of listOfParkingLots">
+          <td>{{ parkingLot.id }}</td>
+          <td>{{ parkingLot.name }}</td>
+          <td>{{ parkingLot.address }}</td>
+          <td>{{ parkingLot.stories }}</td>
+          <td>{{ parkingLot.capacity }}</td>
+          <td>{{ parkingLot.availableSpaces }}</td>
+          <td class="action-btn">
+            <button
+              (click)="goToParkingSacesList(parkingLot.id)"
+              class="btn btn-sm btn-warning"
+              style="margin-left: 10px"
+            >
+              See Availabe Spaces
+            </button>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
