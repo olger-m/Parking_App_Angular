@@ -1,0 +1,48 @@
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-3 mb-4">
+            <div style="height: 100%;" class="filter-section">
+                <h4>Filter Options</h4>
+                <div class="form-group">
+                    <label for="carType">Car Type:</label>
+                    <select class="form-control" id="carType">
+                        <option value="any">Any</option>
+                        <option value="compact">Compact</option>
+                        <option value="sedan">Sedan</option>
+                        <option value="suv">SUV</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="fuelType">Fuel Type:</label>
+                    <select class="form-control" id="fuelType">
+                        <option value="any">Any</option>
+                        <option value="petrol">Petrol</option>
+                        <option value="diesel">Diesel</option>
+                        <option value="electric">Electric</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Additional Filters:</label>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="additionalFilter1">
+                        <label class="form-check-label" for="additionalFilter1">
+                            Additional Filter 1
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="additionalFilter2">
+                        <label class="form-check-label" for="additionalFilter2">
+                            Additional Filter 2
+                        </label>
+                        <button (click)="testnav()" class="btn-primary">test</button>
+                    </div>
+                    <!-- Add more checkboxes as needed -->
+                </div>
+            </div>
+        </div>
+
+    <div class="col-md-9 mb-4">
+        <router-outlet></router-outlet>
+</div>
+    </div>
+</div>

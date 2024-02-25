@@ -1,0 +1,36 @@
+
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h2>Parking Space List</h2>
+  </div>
+  <button style="margin-bottom: 1rem;" (click)="gotoList()" class="btn btn-secondary">Back to Parking Lots</button>
+  <div class="panel-body">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th (click)="sort('id')" >Id <i class="bi bi-sort-down"></i></th>
+          <th (click)="sort('number')">Number <i class="bi bi-sort-down"></i></th>
+          <th (click)="sort('price')">Cost per Hour<i class="bi bi-sort-down"></i></th>
+          <th>Occupied</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+       <tr *ngFor="let parkingSpace of listOfParkingSpaces"
+    [ngClass]="parkingSpace.occupied ? 'table-danger' : 'table-success'">
+  <td>{{ parkingSpace.id}}</td>
+  <td>{{ parkingSpace.number}} test</td>
+  <td>{{parkingSpace.costPerHour |currency}}</td>
+  <td>{{parkingSpace.occupied}}</td>
+  <td>{{parkingSpace.status | json}}</td>
+  <td class="action-btn">
+    <button (click)="startTransaction(parkingSpace.id)" class="btn btn-primary">
+      Reserve
+    </button>
+  </td>
+</tr>
+      </tbody>
+    </table>
+  </div>
+</div>

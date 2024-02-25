@@ -1,0 +1,55 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-6">
+      <h1 class="text-left">
+        <span class="text-primary">The Smarter Way</span> 
+        <span class="text-secondary"> to Find Parking</span>
+      </h1>
+      <p class="text-left">Thousands of reservable spaces located right where you need them. Join over 13 million drivers and enjoy stress-free, cheaper parking.</p>
+      
+      <ul class="nav nav-pills nav-fill" id="parkingTabs" role="tablist">
+        <li class="nav-item" role="presentation">
+          <a class="nav-link active" href="#pills-login" role="tab" aria-selected="true">Hourly / Daily</a>
+        </li>
+        <li class="nav-item" role="presentation">
+          <a class="nav-link" href="#pills-register" role="tab" aria-selected="false">Monthly</a>
+        </li>
+      </ul>
+      
+      <form action="#" method="get">
+        <label for="parkAt" class="form-label">Park at</label>
+        <input [(ngModel)]="input" [ngModelOptions]="{ standalone: true }" (input)="googleautocomplete()" type="text" class="form-control mb-3" id="parkAt" placeholder="Enter address or postcode">
+
+
+<div *ngIf="sugestions && sugestions.predictions.length > 0" class="list-group">
+  <a
+    href="#"
+    class="list-group-item list-group-item-action"
+    *ngFor="let item of sugestions.predictions"
+    (click)="selectLocation(item.description)"
+  >
+    {{ item.description }}
+  </a>
+</div>
+
+        <div class="row">
+          <div class="col">
+            <label for="fromDate" class="form-label">From</label>
+            <input type="datetime-local" class="form-control mb-3" id="fromDate" name="fromDate" value="2023-03-14T10:00">
+          </div>
+          <div class="col">
+            <label for="fromTime" class="form-label">Until</label>
+            <input type="datetime-local" class="form-control mb-3" id="fromTime" name="untilDate" value="2023-03-14T12:00">
+          </div>
+        </div>
+        
+        <button type="button" class="btn btn-primary btn-block">Show Parking Spaces</button>
+        <button class="btn btn-danger" (click)="googleautocomplete()">Google Results</button>
+      </form>
+    </div>
+    
+    <div class="col-sm">
+      <img src="https://images.pexels.com/photos/2612855/pexels-photo-2612855.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Random Car Image" class="img-fluid">
+    </div>
+  </div>
+</div>
